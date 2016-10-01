@@ -10,7 +10,9 @@
 		var ddo = {
 			templateUrl: 'foundItems.html',
 			scope: {
-				foundItems: '=foundItems'
+				items: '<',
+				error: '<',
+				onRemove: '&'
 			}
 		};
 
@@ -19,35 +21,48 @@
 
 	NarrowItDownController.$inject = ['MenuSearchService'];
 	function NarrowItDownController(MenuSearchService){
-		var nitc = this;
+		var nidc = this;
 		
-		nitc.searchTerm = "";
-		nitc.foundItems = "";
+		nidc.searchTerm = "";
+		nidc.foundItems = "";
+		nidc.errorMessage = "";
 
-		nitc.getMatchedMenuItems = function(searchTerm){
+		nidc.getMatchedMenuItems = function(searchTerm){
 
-			if (nitc.searchTerm === ""){
-				console.log ('Nothing found.');
+			nidc.foundItems = "";
+			nidc.errorMessage = "";
+
+			if (nidc.searchTerm === ""){
+				nidc.errorMessage = 'Nothing found.';
+				console.log('Empty input.');
 			}
 			else{
-				var found = MenuSearchService.getMatchedMenuItems(nitc.searchTerm);
+				var found = MenuSearchService.getMatchedMenuItems(nidc.searchTerm);
 				
 				found.then(function (foundItems) {
 					if (foundItems.length != 0){
-						nitc.foundItems = foundItems;
-						console.log('Encontrou ' + foundItems.length + ' pratos.');
-
-						for (var i = 0; i < foundItems.length; i++){
-							console.log('Nome: ' + foundItems[i].name + ' - Descrição: ' + foundItems[i]	.description);
-						}	
+						nidc.foundItems = foundItems;
+						console.log('Found ' + foundItems.length + ' item(s).');
 					}
 					else{
+						nidc.errorMessage = 'Nothing found.';
 						console.log('Nothing found.');
 					} 
 				})
 				.catch(function (error) {
 					console.log(error);
 				});
+			}
+		}
+
+		nidc.removeItem = function(itemIndex){
+			var item = nidc.foundItems[itemIndex];
+			console.log("Item " + item.name + " (" + item.short_name + ", " + item.description + ") removed.");
+			nidc.foundItems.splice(itemIndex, 1);
+			console.log("New array size: " + nidc.foundItems.length);
+
+			if (nidc.foundItems.length === 0){
+				nidc.errorMessage = "All items removed.";
 			}
 		}
 	}
