@@ -31,7 +31,7 @@
         params: {"category": shortName}
       })
       .then(function (response){
-        var items = response.data;
+        var items = response.data.menu_items;
         return items;
       });
 
