@@ -4,11 +4,15 @@
 angular.module('public')
 .controller('SignUpController', SignUpController);
 
-function SignUpController() {
+SignUpController.$inject = ['UserService'];
+function SignUpController(UserService) {
   var signUpCtrl = this;
+  signUpCtrl.success = false;
+  signUpCtrl.error = false;
 
   signUpCtrl.submit = function () {
-    console.log('foi!');
+    UserService.setUser(signUpCtrl.user);
+    signUpCtrl.success = true;
   };
 
 }

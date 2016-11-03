@@ -21,17 +21,26 @@
           	</span>
 			<br />
 			
-			<input type="text" name="phone" placeholder="Phone ###-###-####"" ng-model="signUpCtrl.user.phoneNumber" required 
+			<input type="text" name="phone" placeholder="Phone ###-###-####"" ng-model="signUpCtrl.user.phone" required 
 					pattern="(\d{3})-(\d{3})-(\d{4})" />
           	<span ng-if="frmSignUp.phone.$invalid && frmSignUp.phone.$touched">
 	            Phone must be in the format ###-###-####.
           	</span>
 			<br />
 
-			<input type="text" name="txtFavoriteDish" placeholder="Favorite Dish Code (ex: A1)" ng-model="signUpCtrl.user.favoriteDish" required />
+			<input type="text" name="txtFavoriteDish" placeholder="Favorite Dish Code (ex: A10)" ng-model="signUpCtrl.user.favoriteDish" />
+			<span ng-if="signUpCtrl.error">
+				No such menu number exists.
+			</span>	
 			<br />
 
-			<button ng-disabled="frmSignUp.$invalid" ng-click="signUpCtrl.submit()">Submit</button>
+			<button ng-disabled="frmSignUp.$invalid" ng-click="signUpCtrl.submit()">Submit</button> 
+
+			<br /><br />
+			
+			<span ng-if="signUpCtrl.success">
+				Your information has been saved.
+			</span>
 
 		</form>
 	</fieldset>
