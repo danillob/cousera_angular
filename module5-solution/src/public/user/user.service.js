@@ -13,7 +13,10 @@ function UserService($http, ApiPath) {
     lastName: "",
     email: "",
     phone: "",
-    favoriteDish: ""
+    favoriteDish: "",
+    dishName: "",
+    dishDescription: "",
+    dishImage: ""
   };
 
   service.setUser = function(user){

@@ -9,9 +9,9 @@
 			</span>
 			<br />
 			
-			<input type="text" name="lastName" placeholder="Last Name" ng-model="signUpCtrl.user.lastName" minlength="2" required />
+			<input type="text" name="lastName" placeholder="Last Name" ng-model="signUpCtrl.user.lastName" minlength="3" required />
 			<span ng-if="(frmSignUp.lastName.$error.minlength || frmSignUp.lastName.$error.required) && frmSignUp.lastName.$touched">
-            	Last Name must be at least 2 characters long
+            	Last Name must be at least 3 characters long
 			</span>
 			<br />
 			
@@ -30,7 +30,7 @@
 
 			<input type="text" name="txtFavoriteDish" placeholder="Favorite Dish Code (ex: A10)" ng-model="signUpCtrl.user.favoriteDish" />
 			<span ng-if="signUpCtrl.error">
-				No such menu number exists.
+				{{ signUpCtrl.errorMessage }}
 			</span>	
 			<br />
 

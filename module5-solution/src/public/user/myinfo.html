@@ -9,7 +9,9 @@
 		Name: {{ myInfoCtrl.user.firstName }} {{ myInfoCtrl.user.lastName }} <br />
 		E-mail:  {{ myInfoCtrl.user.email }} <br />
 		Phone: {{ myInfoCtrl.user.phone }} <br />
-		Favorite Dish: {{ myInfoCtrl.user.favoriteDish }}
+		Favorite Dish: {{ myInfoCtrl.user.favoriteDish }} - {{ myInfoCtrl.user.dishName }} <br />
+		{{ myInfoCtrl.user.dishDescription }} <br /><br />
+		<img ng-src="{{ myInfoCtrl.user.dishImage }}" alt="Dish picture." />
 	</div>
 
 </div>
